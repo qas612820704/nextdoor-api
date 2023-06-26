@@ -7,13 +7,13 @@ const size = 10;
 
 main();
 async function main() {
-    const [ location ] = url.split().pop().split('--');
+    const location = url.split('--').shift().split('/').pop();
 
     const feeds = [];
     let result;
     for (let i = 0; i < size; i++) {
         const nextPage = result?.data?.neighborhood?.contentFromHoodFeed?.nextPage;
-        result = await fetchFeeds(nextPage);
+        result = await fetchFeeds(location, nextPage);
         const feedItems = result?.data?.neighborhood?.contentFromHoodFeed?.feedItems || [];
         feeds.push(...feedItems.map(item => {
             return {
@@ -27,8 +27,9 @@ async function main() {
             }
         }));
     }
-    fs.writeFileSync('feeds.json', JSON.stringify(feeds, null, 2));
-    fs.writeFileSync('feeds.csv', unparse(feeds, { newline: ''}));
+
+    fs.writeFileSync(`${location}.json`, JSON.stringify(feeds, null, 2));
+    fs.writeFileSync(`${location}.csv`, unparse(feeds));
 }
 
 async function fetchFeeds(
