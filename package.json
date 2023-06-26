@@ -1,0 +1,15 @@
+{
+  "name": "nextdoor-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "flat": "^5.0.2",
+    "json2csv": "^6.0.0-alpha.2",
+    "node-fetch": "2",
+    "papaparse": "^5.4.1"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  }
+}
