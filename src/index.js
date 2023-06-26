@@ -9,6 +9,7 @@ main();
 async function main() {
     const location = url.split('--').shift().split('/').pop();
 
+    const rawFeeds = [];
     const feeds = [];
     let result;
     for (let i = 0; i < size; i++) {
@@ -26,9 +27,11 @@ async function main() {
                 location,
             }
         }));
+        rawFeeds.push(feedItems);
     }
 
     fs.writeFileSync(`${location}.json`, JSON.stringify(feeds, null, 2));
+    fs.writeFileSync(`${location}.raw.json`, JSON.stringify(rawFeeds, null, 2));
     fs.writeFileSync(`${location}.csv`, unparse(feeds));
 }
 
