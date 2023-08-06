@@ -1,9 +1,8 @@
-const fs = require('fs');
-const { unparse } = require('papaparse');
+const { fetchFeeds } = require('./fetch');
+const location = 'regentspark';
 
 main();
 async function main() {
-    const data = JSON.parse(fs.readFileSync('feeds.json', 'utf8'));
-    const csv = unparse(data);
-    console.log(csv);
+    const result = await fetchFeeds(location);
+    console.log(result);
 }

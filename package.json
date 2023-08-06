@@ -10,6 +10,7 @@
     "papaparse": "^5.4.1"
   },
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "test": "node src/test.js"
   }
 }
